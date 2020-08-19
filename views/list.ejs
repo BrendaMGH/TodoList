@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<%- include("header") %> 
+
+    <div class="box" id="heading">
+        <h1><%= listTitle %> ToDo List</h1>
+    </div>
+    
+    <div class="box">
+        <%newTasks.forEach(newTask => {%>
+            <form action="/delete" method="post">
+                <div class="item">
+                    <input type="checkbox" onchange="this.form.submit()" name="checked" value="<%=newTask._id%>">
+                    <p><%= newTask.name %> </p>            
+                </div>            
+                <input type="hidden" name="listTitle" value="<%= listTitle %>">
+            </form>
+        <%}); %>
+        <form class="item" action="/" method="post">
+            <input type="text" name="newTask" placeholder="New Task" autocomplete="off">
+            <button type="submit" name="list" value=<%= listTitle %> >+</button>
+        </form>
+    </div>
+    
+<%- include("footer") %>     
+
+    
+
